@@ -1,19 +1,9 @@
-let mysql = require('mysql')
+const { MongoClient } = require("mongodb")
+const atlasURI = "mongodb+srv://forex-microservice:forex-microservice@forex-cluster.djnjd.mongodb.net/products?retryWrites=true&w=majority"
 
-Database = {
-  connection : mysql.createConnection({
-    host: 'remotemysql.com',
-    user: 'lqcji0Oanf',
-    password: 'NyLOmLFLan',
-    database: 'lqcji0Oanf'
-  }),
-  connect: (connection) => {
-    connection.connect((err) => {
-    if (err) {
-      return console.error('error: ' + err.message);
-    }
-    console.log('Connected to the MySQL server.');
-  })}
-}
-
-module.exports = Database
+const Client = new MongoClient(atlasURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+ 
+module.exports = Client

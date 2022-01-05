@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import './CSS/App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './Routes/Home'
+import Customer from './Routes/Customer';
+import Seller from './Routes/Seller';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super()
+    this.state = { products: [] }
+    
+  }
+
+  render(){
+    
+    return (
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li className="logo">
+                <Link to="/">Avios</Link>
+              </li>
+              <li>
+                <Link to="/customer">Customer</Link>
+              </li>
+              <li>
+                <Link to="/seller">Seller</Link>
+              </li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            </ul>
+          </nav>
+  
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Routes>
+            <Route path="/customer" element={<Customer  />} />
+    
+            <Route path="/seller" element={<Seller />} />
+            
+            <Route path="/" element={<Home />} />
+              
+          </Routes>
+        </div>
+      </Router>
+    )
+  }
 }
+
 
 export default App;
