@@ -1,13 +1,13 @@
 function renderProduct(productObject){
   const numOfVarieties = productObject.product_varieties.length;
-
-  let html = `<div class="slider">
+  console.log(generateCss(numOfVarieties))
+  let html = `
+              
+              <div class="slider" style=${generateCss(numOfVarieties)}>
                 <div class="slideshow">
                   <!-- carousel control buttons -->
-                  <button class="slide-btn slide-btn-1"></button>
-                  <button class="slide-btn slide-btn-2"></button>
-                  <button class="slide-btn slide-btn-3"></button>
-                  <button class="slide-btn slide-btn-4"></button>
+                  ${generateButtonsHtml(numOfVarieties)}
+
                   <div class="slideshow-wrapper" style="width: ${productObject.product_varieties.length * 100}%">`
   for(let variant of productObject.product_varieties){
     html += `
@@ -31,7 +31,7 @@ function renderProduct(productObject){
         </div>
     `
   }
-
+  
   html += `   </div>
             </div>
           </div>`
@@ -65,12 +65,60 @@ function createBtnStylingOnFocus(numOfButtons) {
  */
 function createBtnStylingPosition(numOfButtons) {
   let styling = "";
+  let startPosition = 52.5 - (2.5 * numOfButtons);
   for (let i = 1; i <= numOfButtons; i++ ) {
     styling += `
       .slide-btn-${i} {
-        left: ${52.5 - (2.5 * numOfButtons)}%;
+        left: ${startPosition + (i - 1)}%;
     `;
   }
+}
+
+/**
+ * @description This creates the CSS styling for the animation of the carousel.
+ * @param {Integer} numOfButtons 
+ * @returns String
+ */
+function createCarouselSlideShow(numOfButtons) {
+  let styling = `
+    @keyframes slideshow {
+    
+  `
+  let lengthOfDelay = Math.round(20 / numOfButtons);
+
+  for (let index = 0; index < 20; index++) {
+    for (let i = 0; i < numOfButtons; i++) {
+      for (let j = 0; j < lengthOfDelay; j++) {
+        styling += `
+          ${(index * 5)}% {left: ${-1 * 100 * i}}
+        `;
+      }
+    }
+  }
+
+  styling += `}`;
+
+  return styling;
+
+}
+
+function generateCss(numOfButtons) {
+  return createBtnStylingPosition(numOfButtons) + createBtnStylingOnFocus(numOfButtons) + createCarouselSlideShow(numOfButtons)
+}
+
+/**
+ * @description Generates the HTML code for the buttons that toggle the carousel.
+ * @param {Integer} numOfButtons 
+ */
+function generateButtonsHtml(numOfButtons) {
+  let html = ''
+  for (let index = 1; index <= numOfButtons; index++) {
+    html += `
+      <button class="slide-btn slide-btn-${index}"></button>
+    `
+  }
+
+  return html
 }
 
 export default renderProduct

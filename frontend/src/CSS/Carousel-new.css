@@ -38,25 +38,7 @@
     height: 100%;
     object-fit: cover; 
 }
-/* @keyframes are used to provide animations
-   We make these settings for 4 image carousel.
-   Make modification accourding to your needs. */
-@keyframes slideshow {
-    0%  { left: 0; }
-    10% { left: 0; }
-    15% { left: -100%; }
-    25% { left: -100%; }
-    30% { left: -200%; }
-    40% { left: -200%; }
-    45% { left: -300%; }
-    55% { left: -300%; }
-    60% { left: -200%; }
-    70% { left: -200%; }
-    75% { left: -100%; }
-    85% { left: -100%; }
-    90% { left: 0%; }
-}
-/* ----- end of slideshow stylings ----- */
+
 
 /* ----- carousel control buttons stylings ----- */
 .slide-btn {
@@ -75,41 +57,7 @@
     transform: translateX(-50%);
     z-index: 70;
 }
-/* As we provide position as absolute, 
-the buttons places one over the other. 
-So, we have to place them individually
-at their correct positions. */
-.slide-btn-1 {
-    left: 45%;
-}
-.slide-btn-2 {
-    left: 50%;
-}
-.slide-btn-3 {
-    left: 55%;
-}
-.slide-btn-4 {
-    left: 60%;
-}
-/* When we focus on the particular button, 
-the animation stops to that particular image 
-to which the button is associated. */
-.slide-btn-1:focus~.slideshow-wrapper {
-    animation: none;
-    left: 0;
-}
-.slide-btn-2:focus~.slideshow-wrapper {
-    animation: none;
-    left: -100%;
-}
-.slide-btn-3:focus~.slideshow-wrapper {
-    animation: none;
-    left: -200%;
-}
-.slide-btn-4:focus~.slideshow-wrapper {
-    animation: none;
-    left: -300%;
-}
+
 /* when we focus on the button, the background color changes */
 .slide-btn:focus {
     background-color: #308d46;
