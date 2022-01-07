@@ -1,6 +1,6 @@
 import renderAllProducts from "../Utils/renderAllProducts";
 import parse from 'html-react-parser'
-import '../CSS/Carousel.css'
+import '../CSS/Carousel-new.css'
 import '../CSS/Product.css'
 
 

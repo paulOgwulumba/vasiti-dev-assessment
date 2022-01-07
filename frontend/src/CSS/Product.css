@@ -20,6 +20,9 @@ a
 .product-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .product-card {
@@ -28,6 +31,7 @@ a
     box-shadow: 0 2px 7px #dfdfdf;
     margin: 50px auto;
     background: #fafafa;
+    height: 100%;
 }
 
 .badge {
@@ -58,6 +62,7 @@ a
 
 .product-details {
     padding: 30px;
+    min-height: calc(100% - 300px);
 }
 
 .product-catagory {
